@@ -51,10 +51,13 @@
 }
 body {
     font-family: var(--font-primary);
-    background-image: url('../img/bg_pattern-hollow.png');
+    background-image: url('../img/bg_pattern-hollow@2x.png');
+    background-size: 458px 375px;
     background-position: top center;
     background-repeat: repeat;
     animation: body_bg 10s infinite alternate;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 .mt-1 {
     margin-top: 1rem;
@@ -132,6 +135,12 @@ body {
     padding: 20px;
     box-sizing: border-box;
     position: relative;
+    transition: background-color 350ms ease, box-shadow 350ms ease;
+}
+
+.promo__box:hover {
+    background-color: var(--white-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.30);
 }
 .promo__box::before {
     content: '';
@@ -213,6 +222,13 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
     transition: all var(--transition-duration) ease-in-out;
     box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
+
+input[type="email"]:hover, input[type="number"]:hover, input[type="search"]:hover, input[type="text"]:hover, input[type="tel"]:hover, input[type="url"]:hover, input[type="password"]:hover, textarea:hover, select:hover,
+input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    box-shadow: none;
+    border-color: var(--primary-color);
+    outline: none;
+}
 .form__box{
     background-color: var(--white-color);
     box-shadow: 0 7px 14px rgba(110, 183, 194, 0.37);
@@ -257,7 +273,8 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
     height: 50px;
     margin: 0 auto;
     box-sizing: border-box;
-},
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
 /* Buttons */
 
@@ -267,5 +284,12 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 @media (min-width: 750px) {
     .form__head {
         padding: 0 75px;
+    }
+}
+
+/* Retina Mods */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo img {
+        content: url('../img/Logo@4x.png'); /* High-res logo for retina */
     }
 }

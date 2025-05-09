@@ -18,7 +18,7 @@
         <div class="container">
             <div class="twelve columns">
                 <div class="logo">
-                    <a href="index.html"><img src="assets/img/logo.svg" alt="Modernize - Home Empowerment&trade;"></a>
+                    <a href="index.html"><img src="assets/img/Logo.svg" alt="Modernize - Home Empowerment&trade;" height="37" /></a>
                 </div>
             </div>
         </div>
@@ -74,6 +74,7 @@
                                         $('#contactForm input[required]').each(function () {
                                             if (!this.value.trim()) {
                                                 $(this).css('border-color', '#D50303');
+                                                $(this).css('border-width', '2');
                                                 isValid = false;
                                             } else {
                                                 $(this).css('border-color', '');
@@ -87,16 +88,22 @@
 
                                         if (!isValid) return;
 
+                                        // Change button text to "Processing..."
+                                        $('#submitButton').text('PROCESSING...').prop('disabled', true);
+
                                         // Submit via AJAX
                                         $.ajax({
                                             url: 'https://formsws-hilstaging-com-0adj9wt8gzyq.runscope.net/solar',
                                             method: 'POST',
                                             data: $('#contactForm').serialize(),
                                             success: function () {
-                                                $('#submitButton').text('Submitted').prop('disabled', true);
+                                                $('#submitButton').text('SUBMITTED');
                                             },
                                             error: function () {
-                                                alert('An error occurred while submitting the form.');
+                                                $('#submitButton').text('FAILED');
+                                            },
+                                            complete: function () {
+                                                $('#submitButton').prop('disabled', false);
                                             }
                                         });
                                     });
